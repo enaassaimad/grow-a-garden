@@ -1,0 +1,17 @@
+{
+  "name": "Grow a Garden Companion",
+  "short_name": "GrowGarden",
+  "description": "An unofficial companion app for the 'Grow a Garden' player community. It helps you save time and enhance your in-game gardening experience with features like quick item lookups, restock countdowns, and a garden planner.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#111827",
+  "icons": [
+    {
+      "src": "/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

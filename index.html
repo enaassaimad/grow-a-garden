@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grow a Garden Companion</title>
+
+    <!-- PWA & iOS App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Grow Garden">
+    <link rel="apple-touch-icon" href="/assets/icon.svg">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <!-- IMPORTANT: Replace the ca-pub-XXXXXXXXXXXXXXXX with your own AdMob Publisher ID -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --background: #111827;
+        --foreground: #D1D5DB;
+        --primary: #22c55e; /* Green 500 */
+        --primary-foreground: #ffffff;
+        --secondary: #374151; /* Gray 700 */
+        --secondary-foreground: #E5E7EB;
+        --accent: #10b981; /* Emerald 500 */
+        --accent-foreground: #ffffff;
+        --card: #1f2937; /* Gray 800 */
+        --card-foreground: #F9FAFB;
+        --border: #374151; /* Gray 700 */
+      }
+
+      html.theme-nature {
+        --background: #f0fdf4; /* Green 50 */
+        --foreground: #14532d; /* Green 900 */
+        --primary: #22c55e; /* Green 500 */
+        --primary-foreground: #ffffff;
+        --secondary: #dcfce7; /* Green 100 */
+        --secondary-foreground: #166534; /* Green 800 */
+        --accent: #10b981; /* Emerald 500 */
+        --accent-foreground: #ffffff;
+        --card: #ffffff;
+        --card-foreground: #14532d;
+        --border: #bbf7d0; /* Green 200 */
+      }
+
+      html.theme-dark {
+        --background: #111827; /* Gray 900 */
+        --foreground: #D1D5DB; /* Gray 300 */
+        --primary: #22c55e; /* Green 500 */
+        --primary-foreground: #ffffff;
+        --secondary: #374151; /* Gray 700 */
+        --secondary-foreground: #E5E7EB; /* Gray 200 */
+        --accent: #10b981; /* Emerald 500 */
+        --accent-foreground: #ffffff;
+        --card: #1f2937; /* Gray 800 */
+        --card-foreground: #F9FAFB; /* Gray 50 */
+        --border: #374151; /* Gray 700 */
+      }
+      
+      html.theme-pastel {
+        --background: #FFF7ED; /* Orange 50 */
+        --foreground: #7C2D12; /* Orange 900 */
+        --primary: #FB923C; /* Orange 400 */
+        --primary-foreground: #431407; /* Orange 950 */
+        --secondary: #FED7AA; /* Orange 200 */
+        --secondary-foreground: #7C2D12; /* Orange 900 */
+        --accent: #FDBA74; /* Orange 300 */
+        --accent-foreground: #431407;
+        --card: #FFFAF0; /* Floral White */
+        --card-foreground: #7C2D12;
+        --border: #FFE4E1; /* Misty Rose */
+      }
+
+      html.theme-minimalist {
+        --background: #F9FAFB; /* Gray 50 */
+        --foreground: #1F2937; /* Gray 800 */
+        --primary: #374151; /* Gray 700 */
+        --primary-foreground: #FFFFFF;
+        --secondary: #E5E7EB; /* Gray 200 */
+        --secondary-foreground: #1F2937;
+        --accent: #6B7280; /* Gray 500 */
+        --accent-foreground: #FFFFFF;
+        --card: #FFFFFF;
+        --card-foreground: #111827; /* Gray 900 */
+        --border: #D1D5DB; /* Gray 300 */
+      }
+      
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        transition: background-color 0.3s, color 0.3s;
+      }
+      
+      /* Pre-React Loader Styles */
+      .loading-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: var(--background);
+        color: var(--foreground);
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        font-family: sans-serif;
+      }
+      @keyframes pulse {
+          50% { opacity: .6; }
+      }
+      .loading-screen .pulse-icon {
+          width: 3rem; /* 48px */
+          height: 3rem; /* 48px */
+          color: var(--primary);
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      .loading-screen .loading-text {
+          margin-top: 1rem;
+          font-size: 1.125rem; /* 18px */
+          font-weight: 600;
+          opacity: 0.9;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root">
+        <div class="loading-screen">
+            <svg xmlns="http://www.w3.org/2000/svg" class="pulse-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21.23,12.28A10.2,10.2,0,0,0,12,2a10.2,10.2,0,0,0-9.23,10.28,9.93,9.93,0,0,0,4.34,8,1,1,0,0,0,1-.13,1,1,0,0,0,.41-1.22,4.24,4.24,0,0,1-.52-2.1,3.47,3.47,0,0,1,3.29-3.55,1,1,0,0,0,1.1-1,5.2,5.2,0,0,0-2-3.83,1,1,0,0,0-1.32.22,1,1,0,0,0,.2,1.31,3.21,3.21,0,0,1,1.19,2.3,3.3,3.3,0,0,1-3.3,3.3A5.47,5.47,0,0,0,2,17.45a1,1,0,0,0,.5,1.36,12,12,0,0,0,19,0,1,1,0,0,0,.5-1.36,8.5,8.5,0,0,0-2.61-4.72,1,1,0,0,0-1.41,1.41,6.5,6.5,0,0,1,1.84,3.42,1,1,0,0,0,1.21.75,1,1,0,0,0,.75-1.21,10.45,10.45,0,0,0-2.55-5.52Z" />
+            </svg>
+            <span class="loading-text">Loading Grow a Garden Companion...</span>
+        </div>
+    </div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(error => {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
